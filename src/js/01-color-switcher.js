@@ -4,8 +4,9 @@ const refs = {
   stopBtn: document.querySelector('button[data-stop]'),
 };
 let timerId = null;
-//console.log(refs.startBtn);
+// console.log(refs.startBtn);
 //console.log(refs.stopBtn);
+refs.stopBtn.disabled = true;
 
 refs.startBtn.addEventListener('click', onClickStart);
 refs.stopBtn.addEventListener('click', onClickStop);
@@ -16,12 +17,15 @@ function onClickStart(evt) {
     inputBodyBackgroundColor(hexColor);
     //console.log('start');
   }, 1000);
-  refs.startBtn.removeEventListener('click', onClickStart);
+  refs.startBtn.disabled = true;
+  refs.stopBtn.disabled = false;
 }
 
 function onClickStop(evt) {
   clearInterval(timerId);
-  refs.startBtn.addEventListener('click', onClickStart);
+  refs.startBtn.disabled = false;
+  refs.stopBtn.disabled = true;
+
   //console.log('stop');
 }
 
